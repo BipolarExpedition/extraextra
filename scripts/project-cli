@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# save to restore working directory later
+ORIGPATH="$(pwd)"
+
+# configure path information and working directory
+SCRIPTPATH="$0"
+cd "$(dirname ${SCRIPTPATH})/.."
+PROJECTDIR="$(pwd)"
+
+# source template_vars.env as defined in SOURCEFILE
+SOURCEFILE="${PROJECTDIR}/template_vars.env"
+if [ -f "${SOURCEFILE}" ]; then
+    . "$SOURCEFILE"
+else
+    echo "Error: environment variables file not found: ${SOURCEFILE}"
+    exit 253
+fi
+
+# Check if python environment in use, if not source the default one
+if [ -z "$VIRTUAL_ENV" ]; then
+    if [ -r "${PROJECTDIR}/.venv/bin/activate" ]; then
+        . "${PROJECTDIR}/.venv/bin/activate"
+    elif [ -r "${PROJECTDIR}/venv/bin/activate" ]; then
+        . "${PROJECTDIR}/venv/bin/activate"
+    elif [ -r "${PROJECTDIR}/env/bin/activate" ]; then
+        . "${PROJECTDIR}/env/bin/activate"
+    else
+        echo "Error: No virtual environment found in ${PROJECTDIR}/.venv, venv, or env"
+        exit 254
+    fi
+fi
+
+# Run the python script
+python "${PROJECTDIR}/src/${TPL_PROJECTPREFIX}${TPL_PROJECTNAME}/cli.py" "$@"
+if [ $? -ne 0 ]; then
+    echo "Error: Python script failed."
+    exit 255
+fi
+
+cd "${ORIGPATH}"

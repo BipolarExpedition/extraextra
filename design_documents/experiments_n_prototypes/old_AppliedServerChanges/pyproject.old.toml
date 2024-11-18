@@ -1,0 +1,127 @@
+[project]
+name = "BPAppliedServerChanges"
+version = "0.0.1"
+description = "A tool for managing server changes and configurations, starting with modded Minecraft custom modpack installations."
+readme = "README.md"
+authors = [
+  { name = "BipolarExpedition(Doc)" },
+  { name = "Doc", email = "lastdoc39@gmail.com" }
+]
+requires-python = ">=3.8,<3.13"
+license = { file = "LICENSE" }
+keywords = ["minecraft", "server management", "modpack", "game versioning", "configuration management", "software update", "BipolarExpedition"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: End Users/Desktop ",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "Topic :: Games/Entertainment",
+  "Topic :: Software Development :: Version Control",
+  "Topic :: System :: Installation/Setup",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+[tool.poetry]
+name = "BPAppliedServerChanges"
+version = "0.0.1"
+description = "A tool for managing server changes and configurations, starting with modded Minecraft custom modpack installations."
+readme = "README.md"
+license = "MIT License"
+authors = [
+  "BipolarExpedition(Doc)",
+  "Doc <lastdoc39@gmail.com>"
+]
+keywords = ["minecraft", "server management", "modpack", "game versioning", "configuration management", "software update", "BipolarExpedition"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "Topic :: Games/Entertainment",
+  "Topic :: Software Development :: Version Control",
+  "Topic :: System :: Installation/Setup",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+packages = [
+  { include = "BPAppliedServerChanges", from="src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.13"
+PyYAML = ">=5.3.1"        # For YAML file handling
+toml = ">=0.10.0"         # For TOML file handling (for Python < 3.11)
+requests = ">=2.25.0"     # For HTTP requests to check for updates or download files
+py7zr = ">=0.18.12"
+
+[tool.poetry.dev-dependencies]
+black = "^23.7.0"
+pyright = "^1.1.0"
+pytest = "^7.4.0"
+pyinstaller = "^5.0.0"
+requests-cache = "^0.8.1"
+
+[tool.poetry.extras]
+7z = ["py7zr"]
+
+[tool.poetry.scripts]
+applyserverchanges = "BPAppliedServerChanges.cli:main"
+applyserverchanges_gui = "BPAppliedServerChanges.gui:main"
+
+# Fill out once urls actually exist
+#[project.urls]
+#homepage = "https://example.com"
+#documentation = "https://readthedocs.org"
+#repository = "https://github.com/me/spam.git"
+#issues = "https://github.com/me/spam/issues"
+#changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+enableTypeIgnoreComments = true
+deprecateTypingAliases = true # default: false
+strictParameterNoneValue = false
+reportPropertyTypeMismatch = "error"
+reportMissingImports = "error"
+reportAssignmentType = "error"
+reportImportCycles = "information"
+reportUnusedImport = "information"
+reportUnusedClass = "information"
+reportUnusedFunction = "information"
+reportUnusedVariable = "information"
+reportUntypedFunctionDecorator = "information"
+reportUntypedClassDecorator = "information"
+reportUntypedBaseClass = "information"
+reportPrivateUsage = "information"
+reportUnnecessaryCast = "information"
+reportUnnecessaryTypeIgnoreComment = "information"
+reportUnnecessaryComparison = "information"
+reportMatchNotExhaustive = "information"
+reportShadowedImports = "information"
+reportConstantRedefinition = "warning"
+reportUnnecessaryContains = "warning"
+reportImplicitOverride = "warning"
+reportAssertAlwaysTrue = "warning"
+reportImplicitStringConcatenation = "warning"
+#reportImplicitOverride = "warning"
+reportArgumentType = "error"
+reportWildcardImportFromLibrary = "warning"
+reportDuplicateImport = "none"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+#testpath = "tests"
+addopts = "-v -s"
+

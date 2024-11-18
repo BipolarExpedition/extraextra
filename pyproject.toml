@@ -1,0 +1,92 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bpe_extraextra"
+description = "Program for reading a config file and applying updates to installed servers. Primarily modded Minecraft servers."
+readme = "README.md"
+authors = [
+  { name = "BipolarExpedition(Doc1979)" },
+  { name = "Doc1979", email = "lastdoc39@gmail.com" }
+]
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+# keywords = []
+classifiers = [
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+	"rich",
+	"typer",
+	"click",
+	"toml",
+	"requests"
+]
+dynamic = ["version"]
+
+[project.urls]
+homepage = "https://github.com/BipolarExpedition/extraextra"
+repository = "https://github.com/BipolarExpedition/extraextra"
+issues = "https://github.com/BipolarExpedition/extraextra/issues"
+# documentation = "https://readthedocs.org"
+# changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+[project.scripts]
+extraextra_cli = "bpe_extraextra.cli:main"
+
+# [project.gui-scripts]
+# extraextra_gui = "bpe_extraextra.gui-tk:main"
+
+[project.optional-dependencies]
+#gui = ["tkinter"]
+#cli = [
+#  "rich",
+#  "click",
+#]
+
+[tool.hatch.build]
+skip-excluded-dirs = true
+exclude = [
+  "design_documents",
+  ".git",
+  ".secrets",
+  ".credentials",
+  ".vscode",
+  ".idea"
+]
+
+[tool.hatch.envs.test]
+python = "3.10"
+dependencies = [
+  "ruff",
+  "myst-parser",
+  "sphinx",
+  "pytest"
+]
+
+[tool.hatch.envs.dev]
+python = "3.10"
+dependencies = [
+  "ruff",
+  "myst-parser",
+  "sphinx",
+  "pytest",
+  "google-api-python-client",
+  "google-auth-httplib2",
+  "google-auth-oauthlib"
+]
+
+[tool.hatch.version]
+path = "src/bpe_extraextra/__about__.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v -s"
+
