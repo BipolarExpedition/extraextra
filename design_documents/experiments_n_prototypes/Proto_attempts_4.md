@@ -45,14 +45,14 @@ tasks:
         files:
             - "file name.ext"
             - name: "file name2.ext"
-            replace: false
+              replace: false
             - name: "file name3.5.ext"
-            old-name: "file name3.4.ext"
+              old-name: "file name3.4.ext"
             - name: "file name4.7.ext"
-            old-regex: "file\s+name\d+(?:\.\d+).ext"
-            must-exist: true
+              old-regex: "file\s+name\d+(?:\.\d+).ext"
+              must-exist: true
             - name: "file name5.8.ext"
-            friendly-name: "version 5.8 of file name"
+              friendly-name: "version 5.8 of file name"
   - title: "Edit the funky config file"
     description: "Apply changes to the funky config file."
     optional: false
@@ -64,12 +64,15 @@ tasks:
         fail-on-missing: false
         changes:
             - search: "search string"
-            replace: "replace string"
-            options:
+              replace: "replace string"
+              options:
                 - i
             - search: "search string"
-            replace: "replace string"
-            options: "igm"
+              replace: "replace string"
+              options: "igm"
+            - search: "search string"
+              replace: "replace string"
+              options: [i,g,m]
             - "/2\/4/1\/2/ig"
 
 ```
