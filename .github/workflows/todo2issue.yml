@@ -12,13 +12,6 @@ jobs:
           CLOSE_ISSUES: "true"
           PROJECT: "user/BipolarExpedition/extraextra"
           PROJECTS_SECRET: "${{ secrets.PROJECTS_SECRET }}"
-          identifiers: >
-            [
-              {"name": "TODO", "labels": ["todo", "pending"]},
-              {"name": "FIXME", "labels": ["bug"]},
-              {"name": "HACK", "labels": ["hack","review","help wanted","todo","todo"],
-              {"name": "NOTE", "labels": ["documentation"]}
-            ]
       - name: Set Git user
         run: |
           git config --global user.name "github-actions[bot]"
