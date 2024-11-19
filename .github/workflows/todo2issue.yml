@@ -12,7 +12,6 @@ jobs:
           CLOSE_ISSUES: "true"
           PROJECT: "user/BipolarExpedition/extraextra"
           PROJECTS_SECRET: "${{ secrets.PROJECTS_SECRET }}"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           identifiers: >
             [
               {"name": "TODO", "labels": ["todo", "pending"]},
